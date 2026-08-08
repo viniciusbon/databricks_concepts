@@ -19,10 +19,25 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 #v4.2.2
 
+      - name: Validate Databricks auth inputs
+        run: |
+          if [ -z "$DATABRICKS_HOST" ]; then
+            echo "DATABRICKS_HOST is missing. Set it as a repository variable or environment variable."
+            exit 1
+          fi
+          if [ -z "$DATABRICKS_CLIENT_ID" ]; then
+            echo "DATABRICKS_CLIENT_ID is missing. Set it as a GitHub secret."
+            exit 1
+          fi
+          if [ -z "$DATABRICKS_CLIENT_SECRET" ]; then
+            echo "DATABRICKS_CLIENT_SECRET is missing. Set it as a GitHub secret."
+            exit 1
+          fi
+
       - name: Install Databricks CLI
         uses: databricks/setup-cli@49580195afe1ccb06d195764a1d0ae9fabfe2edd #v0.246.0
         with:
-          version: 0.246.0
+          version: 1.10.0
 
       - name: Install uv
         uses: astral-sh/setup-uv@0c5e2b8115b80b4c7c5ddf6ffdd634974642d182 #v5.4.1
