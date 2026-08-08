@@ -83,3 +83,13 @@ with this project. It's also possible to interact with it directly using the CLI
    ```
    $ uv run pytest
    ```
+
+## Minimum GitHub Actions setup
+
+For a simple deploy test in your own workspace, configure these repository-level values in GitHub Actions:
+
+* Variable `DATABRICKS_HOST` = `https://dbc-f90bf339-b041.cloud.databricks.com`
+* Secret `DATABRICKS_CLIENT_ID` = the service principal client id
+* Secret `DATABRICKS_CLIENT_SECRET` = the service principal client secret
+
+The workflows already use `DATABRICKS_AUTH_TYPE=oauth-m2m`, so no GitHub Environment is required for the basic setup.

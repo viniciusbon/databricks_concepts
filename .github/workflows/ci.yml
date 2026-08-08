@@ -8,7 +8,6 @@ on:
 jobs:
   pytest_and_checks:
     runs-on: ubuntu-latest
-    environment: acc
     env:
       DATABRICKS_AUTH_TYPE: oauth-m2m
       DATABRICKS_HOST: ${{ vars.DATABRICKS_HOST }}
